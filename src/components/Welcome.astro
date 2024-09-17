@@ -1,0 +1,28 @@
+
+<div class="relative flex items-center justify-center">
+    <video 
+        class="w-full animate-fade animate-duration-1000" 
+        autoplay loop muted 
+        style="clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 50% 100%, 0 90%);"
+        >
+        <source src="../../public/video/welcome.mp4">
+    </video>
+    <video class="w-full opacity-30 absolute -bottom-56 -z-10 blur-3xl" autoplay loop muted>
+        <source src="../../public/video/welcome.mp4">
+    </video>
+    <div class="absolute flex text-center top-[40%] flex-col ">
+        <h1 class="md:text-7xl text-3xl sm:text-5xl text-amber-200 md:tracking-[1rem] tracking-[0.2rem]" id="name-product">DOS TRAGOS</h1>
+        <h2 class="md:text-2xl text-xl md:tracking-[0.20rem] tracking-[0.10rem] text-zinc-200 font-mono">EL ARTE DEL BUEN BEBER</h2>
+    </div>
+    <div class="w-52 h-52 absolute -bottom-60 bg-white/10 backdrop-blur-sm rounded-full animate-fade-up" id="logo-dos-tragos">
+        <img src="../../public/img/logo.svg" alt="" class="text-white w-full">
+    </div>
+</div>
+
+<style>
+    #name-product {
+        font-family: 'Londrina Solid';
+        font-weight: 200;
+    }
+
+</style>

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');		
+	
+body {
+    font-family: 'Montserrat';
+    font-weight: 200;
+}
+
+@keyframes show{
+    from {
+        opacity: 0;
+        scale: 80%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+@keyframe fadeIn{
+    0% { 
+        opacity: 0; 
+        filter: blur(20px);
+    }
+    10% { 
+        opacity: 1; 
+        filter: brightness(2) blur(10px);
+    }
+}
+
+#logo-dos-tragos {
+    animation: fadeIn 3s ease;
+}
+
+section {
+    view-timeline-name: --image;
+    view-timeline-axis: block;
+    animation-timeline: --image;
+    animation-name: show;
+    animation-range: entry 25% cover 26%;
+    animation-fill-mode: both;
+}
+
