@@ -3,67 +3,242 @@ import SpriteAnimation from '../components/SpriteAnimation.astro';
 
 ---
 <nav id="navbar" 
-    class="
-            transition 
-            duration-[750ms] 
-            w-full 
-            text-white 
-            h-[100px] 
-            bg-transparent 
-            fixed 
-            top-0 
-            left-0 
-            flex 
-            justify-between 
-            px-6 
-            items-center
-            z-10">
-    <div class="flex gap-3 items-center relative">
-        <div class="flex relative">
-            <!-- <div class="h-[124px] w-[124px] absolute -top-6 bg-white rounded-full shadow-xl">
-                <img src="../../public/img/logo.png" class="h-full" alt="">
-            </div> -->
-            <div class="sprite hidden">
-                <SpriteAnimation />
-            </div>
+    class="nav-at-top transition-all duration-300 w-full max-w-[100vw] text-cream h-14 sm:h-16 md:h-20 lg:h-24 fixed top-0 left-0 right-0 flex items-center px-4 sm:px-6 md:px-8 lg:px-12 z-50 overflow-hidden shrink-0">
+    <div class="flex-1 flex items-center justify-start min-w-0 h-full overflow-hidden">
+        <div class="sprite hidden">
+            <SpriteAnimation />
         </div>
     </div>
-    <ul class="gap-5 transition duration-[700ms] text-lg lg:flex hidden" id="menu">
-        <li><a href="/" class="hover:text-amber-200">Inicio</a></li>
-        <li><a href="" class="hover:text-amber-200">¿Quiénes somos?</a></li>
-        <li><a href="services" class="hover:text-amber-200">Servicios</a></li>
-        <li><a href="menu" class="hover:text-amber-200">Menú de cócteles</a></li>
-        <li><a href="" class="hover:text-amber-200">Galería</a></li>
-        <li><a href="#contactos" class="hover:text-amber-200">Contactos</a></li>
+    <div class="fixed inset-0 bg-surface/60 backdrop-blur-sm z-[40] lg:hidden lg:pointer-events-none transition-opacity duration-300 opacity-0 pointer-events-none" id="nav-overlay" aria-hidden="true"></div>
+    <ul class="nav-menu gap-0 lg:gap-5 xl:gap-8 transition-all duration-300 text-sm sm:text-base tracking-wide lg:flex hidden flex-col absolute top-full left-0 w-full lg:bg-transparent lg:border-0 lg:backdrop-blur-none py-0 lg:py-0 lg:flex-row z-[42] max-h-[calc(100vh-4rem)] lg:max-h-full overflow-y-auto overflow-x-hidden lg:overflow-visible lg:flex-1 lg:justify-center lg:items-center lg:static lg:min-h-0" id="menu">
+        <li class="nav-mobile-item"><a href="/" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/">Inicio</a></li>
+        <li class="nav-mobile-item"><a href="/#quienes-somos" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/">¿Quiénes somos?</a></li>
+        <li class="nav-mobile-item"><a href="/services" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/services">Servicios</a></li>
+        <li class="nav-mobile-item"><a href="/menu" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/menu">Menú</a></li>
+        <li class="nav-mobile-item"><a href="/#galeria" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/">Galería</a></li>
+        <li class="nav-mobile-item"><a href="/#contactos" class="nav-link block py-4 lg:py-0 px-6 lg:px-0 text-zinc-400 hover:text-cream transition-colors duration-300 focus:outline-none focus-visible:text-cream whitespace-nowrap" data-path="/">Contactos</a></li>
     </ul>
 
-    <a href="" class="lg:hidden">
-        <span class="icon-menu text-white text-5xl flex" id="burger-menu"></span>
-    </a>
+    <div class="flex-1 flex items-center justify-end min-w-0 h-full overflow-hidden">
+        <button type="button" class="lg:hidden burger-btn relative flex items-center justify-center w-12 h-12 text-cream hover:text-gold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface rounded" id="burger-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+            <span class="burger-icon relative block w-6 h-5" id="burger-bars" aria-hidden="true">
+                <span class="burger-line absolute w-6 h-0.5 bg-current rounded-full top-0 left-0 transition-all duration-300 origin-center"></span>
+                <span class="burger-line absolute w-6 h-0.5 bg-current rounded-full top-1/2 -translate-y-1/2 left-0 transition-all duration-300"></span>
+                <span class="burger-line absolute w-6 h-0.5 bg-current rounded-full bottom-0 left-0 transition-all duration-300 origin-center"></span>
+            </span>
+        </button>
+    </div>
 </nav>
 
 <style>
-	.bajar {
-		background: rgb(255,255,255, .5);
-		height: 80px;
-		color: black;
-		backdrop-filter: blur(5px);
+	#navbar {
+		box-sizing: border-box;
+	}
+	/* Estado inicial (scroll 0): fondo sutil para que el texto se lea sobre el hero */
+	#navbar.nav-at-top {
+		background: rgba(15, 15, 15, 0.45);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+	#navbar.nav-at-top #menu a,
+	#navbar.nav-at-top .burger-btn {
+		color: #f5f0e8;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+	}
+	#navbar.nav-at-top #menu a:hover {
+		color: #fff;
+	}
+	#navbar.nav-at-top #menu .nav-link.nav-active {
+		color: #c4a574;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	}
+	/* Al hacer scroll: barra más sólida */
+	#navbar.bajar {
+		background: rgba(15, 15, 15, 0.92);
+		height: 3.5rem;
+		min-height: 3.5rem;
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.3);
+	}
+	#navbar.bajar #menu a,
+	#navbar.bajar .burger-btn {
+		text-shadow: none;
+	}
+	@media (min-width: 768px) {
+		.bajar { height: 5rem; min-height: 5rem; }
+	}
+	@media (min-width: 1024px) {
+		.bajar { height: 6rem; min-height: 6rem; }
+	}
+	/* Scroll solo en menú desplegable móvil, nunca en la barra */
+	.nav-menu {
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.bajar .nav-scrolled {
+		color: #f5f0e8;
 	}
 
 	.mostrar {
 		display: block;
 	}
 
-    .bajar #menu li a:hover {
-        color: white;
+	/* Panel del menú hamburguesa (solo móvil) */
+	@media (max-width: 1023px) {
+		#menu {
+			background: rgba(15, 15, 15, 0.98);
+			backdrop-filter: blur(24px);
+			-webkit-backdrop-filter: blur(24px);
+			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			padding: 0.5rem 0;
+		}
+		#menu .nav-mobile-item {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		}
+		#menu .nav-mobile-item:last-child {
+			border-bottom: none;
+		}
+		#menu .nav-link {
+			font-size: 1rem;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			padding-left: 1.5rem;
+		}
+		#menu .nav-link:hover {
+			background: rgba(255, 255, 255, 0.04);
+		}
+		#menu .nav-link.nav-active {
+			background: rgba(196, 165, 116, 0.08);
+			border-left: 3px solid #c4a574;
+			padding-left: calc(1.5rem - 3px);
+		}
+	}
+
+	/* Menú móvil abierto: forzar visibilidad (sobreescribe Tailwind .hidden) */
+	#menu.mobile-open {
+		display: flex !important;
+		flex-direction: column;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	#menu.mobile-open li a {
+		color: #e4e4e7;
+	}
+
+	.bajar #menu li a:hover {
+        color: #f5f0e8;
     }
+
+	#menu .nav-link.nav-active {
+		color: #c4a574;
+	}
+
+	#menu .nav-link.nav-active:hover {
+		color: #e8dcc8;
+	}
+
+	/* Subrayado sutil en desktop para el enlace activo */
+	@media (min-width: 1024px) {
+		#menu .nav-link.nav-active {
+			position: relative;
+		}
+		#menu .nav-link.nav-active::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -4px;
+			width: 100%;
+			height: 1px;
+			background: linear-gradient(90deg, #c4a574, transparent);
+			opacity: 0.8;
+		}
+	}
+
+	/* Cuando el menú móvil está abierto, el nav no recorta el dropdown */
+	#navbar.nav-menu-open {
+		overflow: visible;
+	}
+
+	/* Overlay visible cuando el menú móvil está abierto */
+	#nav-overlay.nav-overlay-open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/* Hamburguesa: al abrir se convierte en X */
+	.burger-btn.menu-open .burger-icon .burger-line:nth-child(1) {
+		top: 50%;
+		transform: translateY(-50%) rotate(45deg);
+	}
+	.burger-btn.menu-open .burger-icon .burger-line:nth-child(2) {
+		opacity: 0;
+	}
+	.burger-btn.menu-open .burger-icon .burger-line:nth-child(3) {
+		bottom: auto;
+		top: 50%;
+		transform: translateY(-50%) rotate(-45deg);
+	}
 </style>
 
 <script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var navbar = document.getElementById('navbar');
+		var menu = document.getElementById('menu');
+		var burgerBtn = document.getElementById('burger-btn');
+		var overlay = document.getElementById('nav-overlay');
+
+		if (!menu || !burgerBtn) return;
+
+		function openMenu() {
+			menu.classList.add('mobile-open');
+			if (overlay) overlay.classList.add('nav-overlay-open');
+			if (navbar) navbar.classList.add('nav-menu-open');
+			burgerBtn.setAttribute('aria-label', 'Cerrar menú');
+			burgerBtn.setAttribute('aria-expanded', 'true');
+			burgerBtn.classList.add('menu-open');
+			document.body.style.overflow = 'hidden';
+		}
+
+		function closeMenu() {
+			menu.classList.remove('mobile-open');
+			if (overlay) overlay.classList.remove('nav-overlay-open');
+			if (navbar) navbar.classList.remove('nav-menu-open');
+			burgerBtn.setAttribute('aria-label', 'Abrir menú');
+			burgerBtn.setAttribute('aria-expanded', 'false');
+			burgerBtn.classList.remove('menu-open');
+			document.body.style.overflow = '';
+		}
+
+		burgerBtn.addEventListener('click', function(e) {
+			e.preventDefault();
+			if (menu.classList.contains('mobile-open')) closeMenu();
+			else openMenu();
+		});
+
+		if (overlay) overlay.addEventListener('click', closeMenu);
+
+		document.querySelectorAll('#menu a').forEach(function(link) {
+			link.addEventListener('click', closeMenu);
+		});
+
+		// Estado activo del enlace
+		var path = window.location.pathname || '/';
+		if (path !== '/') path = path.replace(/\/$/, '') || '/';
+		document.querySelectorAll('#menu .nav-link').forEach(function(a) {
+			var linkPath = a.getAttribute('data-path') || '/';
+			a.classList.toggle('nav-active', linkPath === path);
+		});
+	});
+
 	window.addEventListener('scroll', function() {
-		var navbar = document.getElementById('navbar')
-		navbar.classList.toggle("bajar", this.window.scrollY > 0)
-		document.querySelector(".sprite").classList.toggle("mostrar", this.window.scrollY > 0)
-		document.querySelector("#burger-menu").classList.toggle("text-zinc-900", this.window.scrollY > 0)
+		var navbar = document.getElementById('navbar');
+		var isScrolled = window.scrollY > 0;
+		navbar?.classList.toggle("bajar", isScrolled);
+		navbar?.classList.toggle("nav-at-top", !isScrolled);
+		var sprite = document.querySelector(".sprite");
+		if (sprite) sprite.classList.toggle("mostrar", isScrolled);
 	});
 </script>

@@ -1,20 +1,66 @@
-<section class="px-6 mt-56">
-    <h1 class="text-3xl text-start text-amber-300 py-6 font-semibold">Servicios</h1>
-    <div class="flex flex-col lg:flex-row  w-full gap-6">
-        <div class="shadow-xl rounded-lg p-6 backdrop-blur-sm bg-zinc-400/10">
-            <img src="../../public/img/galeria/drinks7.jpg" alt="" class="h-[400px] w-full object-cover object-center">
-            <h2 class="text-2xl mt-6 text-amber-200">Coctelería para eventos</h2>
-            <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio labore similique, repellendus, delectus rem provident hic illo magni cumque amet tempora, at sapiente. Sed dolorem asperiores nesciunt labore, optio debitis.</p>
-        </div>
-        <div class="shadow-xl rounded-lg p-6 backdrop-blur-sm bg-zinc-400/10">
-            <img src="../../public/img/galeria/botellasVarias.jpeg" alt="" class="h-[400px] w-full object-cover object-center">
-            <h2 class="text-2xl mt-6 text-amber-200">Cocteles to go</h2>
-            <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio labore similique, repellendus, delectus rem provident hic illo magni cumque amet tempora, at sapiente. Sed dolorem asperiores nesciunt labore, optio debitis.</p>
-        </div>
-        <div class="shadow-xl rounded-lg p-6 backdrop-blur-sm bg-zinc-400/10">
-            <img src="../../public/img/galeria/drinks6.jpg" alt="" class="h-[400px] w-full object-cover object-center">
-            <h2 class="text-2xl mt-6 text-amber-200">Clases de bartender</h2>
-            <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio labore similique, repellendus, delectus rem provident hic illo magni cumque amet tempora, at sapiente. Sed dolorem asperiores nesciunt labore, optio debitis.</p>
-        </div>
+---
+interface Props {
+	compact?: boolean;
+}
+const { compact = false } = Astro.props;
+const services = [
+	{
+		number: '01',
+		title: 'Coctelería para eventos',
+		description: 'Llevamos la experiencia de un bar profesional a tu evento. Bodas, fiestas corporativas o reuniones privadas — cócteles personalizados que sorprenderán a tus invitados.',
+		img: '/img/galeria/drinks7.jpg',
+		alt: 'Coctelería para eventos',
+		icon: 'Eventos',
+	},
+	{
+		number: '02',
+		title: 'Cocteles to go',
+		description: 'Cócteles artesanales preparados por profesionales para disfrutar en casa. Ideal para reuniones íntimas o momentos de relax.',
+		img: '/img/galeria/botellasVarias.jpeg',
+		alt: 'Cocteles to go',
+		icon: 'To go',
+	},
+	{
+		number: '03',
+		title: 'Clases de bartender',
+		description: 'Aprende el arte de la mixología con nuestros expertos. Técnicas clásicas, creación de cócteles propios y los secretos de las bebidas más emblemáticas.',
+		img: '/img/galeria/drinks6.jpg',
+		alt: 'Clases de bartender',
+		icon: 'Clases',
+	},
+];
+---
+
+<section class="max-w-6xl mx-auto px-6 mt-16 md:mt-56" id="servicios">
+    <h2 class="section-title section-title-wrap text-4xl md:text-5xl text-cream py-12 tracking-wider">Servicios</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8">
+        {services.map((s) => (
+            <article class="service-card group relative bg-surface-elevated/40 border border-white/[0.06] rounded-2xl overflow-hidden transition-all duration-500 hover:border-gold/20 hover:bg-surface-elevated/70 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.03)]">
+                <div class="aspect-[4/5] overflow-hidden relative">
+                    <img src={s.img} alt={s.alt} loading="lazy" class="service-card-img w-full h-full object-cover transition-transform duration-700 ease-out group-hover:brightness-110" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface/90 via-surface/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <span class="absolute top-5 left-5 w-10 h-10 rounded-full bg-surface/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-gold text-sm font-semibold tracking-wider">{s.number}</span>
+                    <span class="absolute top-5 right-5 px-3 py-1.5 rounded-full bg-surface/80 backdrop-blur-sm text-champagne/95 text-xs font-medium tracking-wider uppercase">{s.icon}</span>
+                </div>
+                <div class="relative p-7 md:p-8">
+                    <div class="h-px w-12 bg-gradient-to-r from-gold/60 to-transparent rounded mb-5"></div>
+                    <h3 class="text-xl md:text-2xl font-medium text-cream tracking-tight">{s.title}</h3>
+                    <p class="mt-4 text-zinc-500 text-[15px] leading-7">{s.description}</p>
+                    <a href="/#contactos" class="inline-flex items-center gap-2 mt-6 text-sm font-medium tracking-wide text-gold hover:text-champagne transition-colors duration-300 group/link">
+                        Consultar
+                        <span class="inline-block transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </article>
+        ))}
     </div>
 </section>
+
+<style>
+    .service-card:hover {
+        transform: translateY(-4px);
+    }
+    .service-card:hover .service-card-img {
+        transform: scale(1.08);
+    }
+</style>

@@ -1,43 +1,104 @@
-@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');		
-	
-body {
-    font-family: 'Montserrat';
-    font-weight: 200;
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+html {
+    scroll-behavior: smooth;
 }
 
-@keyframes show{
+body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animaciones */
+@keyframes show {
     from {
         opacity: 0;
-        scale: 80%;
+        transform: translateY(24px);
     }
-
     to {
         opacity: 1;
-        scale: 100%;
+        transform: translateY(0);
     }
 }
 
-@keyframe fadeIn{
-    0% { 
-        opacity: 0; 
-        filter: blur(20px);
+@keyframes fadeIn {
+    0% { opacity: 0; filter: blur(12px); }
+    100% { opacity: 1; filter: blur(0); }
+}
+
+@keyframes heroTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
     }
-    10% { 
-        opacity: 1; 
-        filter: brightness(2) blur(10px);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-#logo-dos-tragos {
-    animation: fadeIn 3s ease;
+@keyframes heroSubtitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    animation: heroTitleIn 1s ease-out 0.3s both;
+}
+
+.hero-subtitle {
+    animation: heroSubtitleIn 0.8s ease-out 0.6s both;
 }
 
 section {
-    view-timeline-name: --image;
+    view-timeline-name: --section;
     view-timeline-axis: block;
-    animation-timeline: --image;
+    animation-timeline: --section;
     animation-name: show;
-    animation-range: entry 25% cover 26%;
+    animation-range: entry 15% cover 30%;
     animation-fill-mode: both;
+}
+
+.section-title {
+    font-family: 'Londrina Solid', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+}
+
+.section-title-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.section-title-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(196, 165, 116, 0.8), transparent);
+    border-radius: 1px;
+}
+
+/* Acento de color para enlaces y CTAs */
+.accent-hover:hover {
+    color: #c4a574;
+}
+
+.link-accent {
+    color: #c4a574;
+}
+
+.link-accent:hover {
+    color: #e8dcc8;
 }
 

@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Dos Tragos">
-	<div class="flex justify-center items-center flex-col w-screen h-screen gap-6">
-        <h1 class="text-3xl text-center">Esta página no existe.</h1>
-        <img src="../../public/img/404.gif" alt="">
-
+<Layout title="Página no encontrada - Dos Tragos">
+	<div class="flex justify-center items-center flex-col min-h-screen gap-8 px-6">
+        <h1 class="section-title text-4xl text-cream tracking-wider">Página no encontrada</h1>
+        <p class="text-zinc-500 text-center max-w-sm">El enlace que buscaste no existe o ha sido movido.</p>
+        <img src="/img/404.gif" alt="Página no encontrada" class="rounded-2xl max-w-xs opacity-90">
+        <a href="/" class="mt-4 px-6 py-3 text-sm tracking-wide border border-white/10 rounded-full text-zinc-400 hover:text-cream hover:border-white/20 transition-all duration-300">Volver al inicio</a>
     </div>
 </Layout>
